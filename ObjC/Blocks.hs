@@ -7,6 +7,7 @@ import Foreign.C
 
 ---------------------------------------------------------------------------------------------------
 -- Blocks support
+-- Adapted from https://ghc.haskell.org/trac/ghc/wiki/BlockObjects/FakingIt
 ---------------------------------------------------------------------------------------------------
 foreign import ccall "& _NSConcreteGlobalBlock" nsConcreteGlobalBlock :: Ptr ()
 

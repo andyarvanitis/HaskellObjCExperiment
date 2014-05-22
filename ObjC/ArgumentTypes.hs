@@ -3,6 +3,7 @@
 
 module ObjC.ArgumentTypes where
 
+import Foreign
 import Foreign.Ptr
 
 import ObjC.Messages
@@ -25,6 +26,10 @@ instance MessageArgument String where
 instance MessageArgument Int where
    asPlainArg a = [(argInt a, Nothing)]
    asBoxedArg a = [(fst . head $ asPlainArg a, Just $ boxer "NSNumber" "numberWithInt")]
+
+instance MessageArgument Bool where
+   asPlainArg a = [(argCChar (fromBool a), Nothing)]
+   asBoxedArg a = [(fst . head $ asPlainArg a, Just $ boxer "NSNumber" "numberWithBool")]
 
 instance MessageArgument Block where
    asPlainArg (Block fp) = [(argPtr fp, Nothing)]

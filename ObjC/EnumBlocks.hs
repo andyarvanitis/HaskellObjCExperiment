@@ -2,7 +2,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 module ObjC.EnumBlocks (EnumObjectsFunc, 
-                        mkEnumBlock,
+                        asEnumObjFunc,
                         setBOOL) where
    
 import Foreign
@@ -48,9 +48,9 @@ mkEnumObjectsBlockArg f _ = do
    return block
 
 ---------------------------------------------------------------------------------------------------
-mkEnumBlock :: EnumObjectsFunc -> EnumObjectsFunc
+asEnumObjFunc :: EnumObjectsFunc -> EnumObjectsFunc
 ---------------------------------------------------------------------------------------------------
-mkEnumBlock f = f
+asEnumObjFunc f = f
 
 ---------------------------------------------------------------------------------------------------
 setBOOL :: Ptr CChar -> BOOL -> IO ()
@@ -58,4 +58,11 @@ setBOOL :: Ptr CChar -> BOOL -> IO ()
 setBOOL ptr x 
    | x == YES = poke ptr 1
    | x == NO  = poke ptr 0
+
+---------------------------------------------------------------------------------------------------
+setBool :: Ptr CChar -> Bool -> IO ()
+---------------------------------------------------------------------------------------------------
+setBool ptr x 
+   | x == True  = poke ptr 1
+   | x == False = poke ptr 0
 

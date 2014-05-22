@@ -61,3 +61,14 @@ instance MessageResult Object where
       result <- msgSend (retPtr retVoid) obj sel args
       return (Object result)
 
+---------------------------------------------------------------------------------------------------
+-- BOOL argument types
+---------------------------------------------------------------------------------------------------
+instance MessageArgument BOOL where
+   asPlainArg a = [(argCChar (fromBOOL a), Nothing)]
+                  where fromBOOL a
+                          | a == YES = 1
+                          | a == NO  = 0                  
+
+   asBoxedArg a = [(fst . head $ asPlainArg a, Just $ boxer "NSNumber" "numberWithBool")]
+

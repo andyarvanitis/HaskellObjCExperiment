@@ -59,7 +59,7 @@ main = do
     
     nsLog fmt array
 
-    "enumerateObjectsUsingBlock"|:mkEnumBlock (\_ i stop -> print i)|>> array :: IO ()
+    "enumerateObjectsUsingBlock"|:asEnumObjFunc (\_ i stop -> print i)|>> array :: IO ()
 
     return ()
 

@@ -2,4 +2,6 @@
 *.hi
 *.o
 *.bak*
+*_stub.h
+main
 

@@ -6,7 +6,7 @@ module ObjC.Runtime (Pointer,
                      Argument, Boxer,
                      -- types from libFFI to export
                      Arg, RetType,
-                     argPtr, argInt, argString, argFunPtr,
+                     argPtr, argInt, argString, argFunPtr, argCChar,
                      retPtr, retInt, retString, retVoid
                      ) where
 
