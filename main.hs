@@ -17,7 +17,9 @@ main = do
 
     let stringClass = Class "NSString"
 
-    fmt <- "stringWithUTF8String"|:"Salutation is: %@"|>> "NSString" :: IO Object
+    fmt <- "NSString" <<|"stringWithUTF8String"|:"Salutation is: %@" :: IO Object
+
+    fmt <- fmt <<| "release"
     
     str <- "stringWithUTF8String"|:"hello world"|>> "NSString" :: IO Object
     
@@ -53,13 +55,22 @@ main = do
     s2 <- "stringWithUTF8String"|:"world"|>> "NSString" :: IO Object
 
     array <- "arrayWithObject"|:s1|>> "NSMutableArray" :: IO Object
+
     "addObject"|:s2|>> array :: IO ()
+    
+    array <<|"addObject"|:@ "!" :: IO ()
     
     fmt <- "stringWithString"|:@"%@"|>> "NSString" :: IO Object
     
     nsLog fmt array
 
     "enumerateObjectsUsingBlock"|:asEnumObjFunc (\_ i stop -> print i)|>> array :: IO ()
+    
+    swiftFoo <- "AXAFoo" <<|"new" :: IO Object
+    swiftFoo <<| "print" :: IO ()
+    swiftFoo <<| "release" :: IO ()
 
     return ()
+    
+    
 
