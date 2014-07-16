@@ -4,7 +4,7 @@ Just noodling right now...
 ```
 Some random notes:
 
-$ ghc main -framework Foundation     (without Swift)
+$ ghc main -framework Foundation     # (without Swift)
 
 $ xcrun -sdk macosx10.9 swift -emit-library -emit-object Foo.swift
 
