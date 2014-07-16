@@ -27,7 +27,7 @@ type Boxer = Maybe (Arg -> IO Pointer)
 type Argument = (Arg, Boxer)
 
 ---------------------------------------------------------------------------------------------------
-foreign import ccall "objc/runtime.h objc_getClass" 
+foreign import ccall unsafe "objc/runtime.h objc_getClass" 
    objc_getClass :: CString -> IO Pointer
 
 ---------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ getClass :: String -> IO Pointer
 getClass name = withCString name $ objc_getClass
 
 ---------------------------------------------------------------------------------------------------
-foreign import ccall "objc/runtime.h sel_registerName" 
+foreign import ccall unsafe "objc/runtime.h sel_registerName" 
    sel_registerName :: CString -> IO Pointer
 
 ---------------------------------------------------------------------------------------------------
